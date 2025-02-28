@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html ng-app ng-controller="GameCntl" ng-keyup="keyup($event)">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Word Game</title>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/jquery.jplayer.min.js"></script>
+    <script src="game.js"></script>
+    
+    <style>
+        body {
+            padding-top: 70px;
+            padding-bottom: 30px;
+        }
+        
+        .mode-buttons, .unit-buttons {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .mode-buttons button, .unit-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            width: 140px;
+        }
+        
+        @media (max-width: 768px) {
+            .mode-buttons button, .unit-buttons button {
+                width: 45%;
+                margin: 5px;
+            }
+        }
+        
+        .mobile-input {
+            position: fixed;
+            bottom: 0;
+            left: -9999px;
+            height: 1px;
+            width: 1px;
+            opacity: 0;
+        }
+        
+        .keyboard-trigger {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .keyboard-trigger {
+                display: block;
+                margin: 20px auto;
+                padding: 10px 20px;
+                font-size: 18px;
+            }
+        }
+        
+        .game-image {
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+            margin: 20px auto;
+        }
+        
+        @media (max-width: 768px) {
+            .game-image {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">单词游戏</a>
+                <span class="navbar-text pull-right" style="margin-right: 15px;">
+                    得分: {{number_right}}
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="unit-buttons">
+            <h4>选择单元</h4>
+            <button class="btn" ng-class="{'btn-primary': currentUnit==1, 'btn-default': currentUnit!=1}" ng-click="selectUnit(1)">Unit 1</button>
+            <button class="btn" ng-class="{'btn-primary': currentUnit==2, 'btn-default': currentUnit!=2}" ng-click="selectUnit(2)">Unit 2</button>
+            <button class="btn" ng-class="{'btn-primary': currentUnit==3, 'btn-default': currentUnit!=3}" ng-click="selectUnit(3)">Unit 3</button>
+            <button class="btn" ng-class="{'btn-primary': currentUnit==4, 'btn-default': currentUnit!=4}" ng-click="selectUnit(4)">Unit 4</button>
+            <button class="btn" ng-class="{'btn-primary': currentUnit==5, 'btn-default': currentUnit!=5}" ng-click="selectUnit(5)">Unit 5</button>
+            <button class="btn" ng-class="{'btn-primary': currentUnit==6, 'btn-default': currentUnit!=6}" ng-click="selectUnit(6)">Unit 6</button>
+        </div>
+
+        <div class="mode-buttons">
+            <h4>选择模式</h4>
+            <button class="btn" ng-class="{'btn-success': mode=='any', 'btn-default': mode!='any'}" ng-click="setmode('any')">任意字母</button>
+            <button class="btn" ng-class="{'btn-success': mode=='first', 'btn-default': mode!='first'}" ng-click="setmode('first')">首字母</button>
+        </div>
+
+        <div class="text-center">
+            <div ng-if="!currentUnit">
+                <h2>请先选择一个单元开始游戏</h2>
+            </div>
+            <div ng-if="currentUnit">
+                <img ng-src="./img/unit_{{currentUnit}}/{{word}}.jpg" class="game-image">
+                
+                <div>
+                    <h1 style="font-size: 72px;">{{clue}}</h1>
+                </div>
+                <div ng-hide="!right_indicator">
+                    <h1 style="font-size: 72px; color: #468847">✔</h1>
+                </div>
+                <div ng-hide="!wrong_indicator">
+                    <h1 style="font-size: 72px; color: #ff0000">X</h1>
+                </div>
+                
+                <!-- 移动端键盘触发按钮 -->
+                <button class="btn btn-primary keyboard-trigger" ng-click="focusInput()">点击输入答案</button>
+                <input type="text" class="mobile-input" ng-model="mobileInput" ng-keyup="mobileKeyup($event)">
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <br><br><br><br>
+    <div id="jpId"></div>
+    
+    <script>
+    $(document).ready(function() {
+        $("#jpId").jPlayer( {
+            ready: function () {
+                $(this).jPlayer("setMedia", {mp3: "correct.mp3"});
+            }
+        });
+    });
+    </script>
+</body>
+</html>
+
