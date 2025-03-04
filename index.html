@@ -24,26 +24,60 @@
     
     <style>
         body {
-            padding-top: 70px;
-            padding-bottom: 30px;
+            padding-top: 50px;  /* 减小顶部间距 */
+            padding-bottom: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .mode-buttons, .unit-buttons {
-            padding: 15px;
+            padding: 8px;  /* 减小内边距 */
             text-align: center;
         }
         
         .mode-buttons button, .unit-buttons button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 18px;
-            width: 140px;
+            margin: 3px;  /* 减小按钮间距 */
+            padding: 8px 15px;  /* 减小按钮内边距 */
+            font-size: 16px;
+            width: 120px;
         }
         
         @media (max-width: 768px) {
             .mode-buttons button, .unit-buttons button {
                 width: 45%;
-                margin: 5px;
+                margin: 3px;
+                padding: 6px 10px;
+                font-size: 14px;
+            }
+            
+            .mode-buttons h4, .unit-buttons h4 {
+                margin: 5px 0;  /* 减小标题间距 */
+                font-size: 16px;
+            }
+            
+            .game-image {
+                width: 200px;  /* 减小图片尺寸 */
+                height: 200px;
+                margin: 10px auto;
+            }
+            
+            h1 {
+                margin: 10px 0;  /* 减小标题间距 */
+            }
+            
+            .keyboard-trigger {
+                margin: 10px auto;
+                padding: 8px 15px;
+            }
+            
+            .navbar {
+                min-height: 40px;  /* 减小导航栏高度 */
+            }
+            
+            .navbar-brand {
+                padding: 10px 15px;
+                height: 40px;
             }
         }
         
