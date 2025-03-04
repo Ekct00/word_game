@@ -252,9 +252,16 @@ function GameCntl($scope, $timeout) {
         }
     };
     
+    $scope.streak = 0; // 连续答对次数
+    
     $scope.correct = function() {
-        
+        $scope.streak += 1;
         $scope.number_right += 1;
+        
+        // 显示鼓励文字
+        if ($scope.streak >= 3) {
+            showEncouragement();
+        }
         
         $scope.right_indicator = true;
         $scope.wrong_indicator = false;
@@ -271,6 +278,7 @@ function GameCntl($scope, $timeout) {
     };
     
     $scope.incorrect = function(c) {
+        $scope.streak = 0; // 重置连续答对次数
         $scope.right_indicator = false;
         $scope.wrong_indicator = true;
         
@@ -295,4 +303,25 @@ function GameCntl($scope, $timeout) {
     };
     
     $scope.next();
+}
+
+function showEncouragement() {
+    const messages = [
+        "太棒了！👏",
+        "继续加油！💪",
+        "你真厉害！⭐",
+        "完美！🌟"
+    ];
+    const msg = messages[Math.floor(Math.random() * messages.length)];
+    
+    const div = document.createElement('div');
+    div.className = 'encouragement';
+    div.textContent = msg;
+    document.body.appendChild(div);
+    
+    setTimeout(() => div.classList.add('show'), 100);
+    setTimeout(() => {
+        div.classList.remove('show');
+        setTimeout(() => div.remove(), 300);
+    }, 1500);
 }

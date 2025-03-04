@@ -121,8 +121,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Vocabloom</a>
-                <span class="navbar-text pull-right" style="margin-right: 15px;">
+                <span class="navbar-text" style="margin-right: 15px;">
                     得分: {{number_right}}
+                    <span ng-if="streak > 2" class="streak-text">连续答对: {{streak}} 🔥</span>
                 </span>
             </div>
         </div>
@@ -187,4 +188,43 @@
     </script>
 </body>
 </html>
+<style>
+    .phonetic {
+        margin: 10px 0;
+        font-family: Arial, sans-serif;
+    }
+    
+    .streak-text {
+        color: #ff6b6b;
+        margin-left: 15px;
+        animation: bounce 0.5s infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+    
+    .encouragement {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 48px;
+        color: #4CAF50;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+    }
+    
+    .encouragement.show {
+        opacity: 1;
+        animation: zoomIn 0.5s;
+    }
+    
+    @keyframes zoomIn {
+        from { transform: translate(-50%, -50%) scale(0.5); }
+        to { transform: translate(-50%, -50%) scale(1); }
+    }
+</style>
 
