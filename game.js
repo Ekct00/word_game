@@ -7,6 +7,12 @@ function speak(str) {
     
     var msg = new SpeechSynthesisUtterance(str);
     
+    // 设置语音参数
+    msg.voice = speechSynthesis.getVoices().find(voice => voice.lang === 'en-US' && voice.name.includes('Samantha')); // 使用更自然的声音
+    msg.rate = 0.7;  // 语速稍微放慢一点
+    msg.pitch = 1.1; // 稍微提高音调
+    msg.volume = 1.0; // 最大音量
+    
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(msg);
 }
