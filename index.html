@@ -96,12 +96,15 @@
             }
             .keyboard-trigger {
                 position: fixed;
-                bottom: 10px;
+                bottom: 70px;  /* 增加底部距离，避免被微信工具栏遮挡 */
                 left: 50%;
                 transform: translateX(-50%);
                 z-index: 1000;
                 margin: 0;
-                padding: 8px 15px;
+                padding: 12px 30px;  /* 增加按钮大小 */
+                font-size: 18px;    /* 增加字体大小 */
+                border-radius: 25px; /* 圆角按钮 */
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* 添加阴影效果 */
             }
         }
     </style>
