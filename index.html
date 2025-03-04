@@ -66,52 +66,52 @@
         @media (max-width: 768px) {
             /* 移动端特定样式 */
             .game-image {
-                width: 150px;  /* 进一步减小图片尺寸 */
+                width: 150px;
                 height: 150px;
                 margin: 5px auto;
             }
 
             h1 {
-                font-size: 48px !important; /* 减小字体大小 */
+                font-size: 48px !important;
                 margin: 5px 0;
             }
 
             .mode-buttons, .unit-buttons {
-                padding: 8px;  /* 减小内边距 */
+                padding: 8px;
                 text-align: center;
             }
             
             .mode-buttons button, .unit-buttons button {
-                margin: 5px;  /* 增加按钮间距 */
-                padding: 12px 25px;  /* 增加按钮内边距 */
-                font-size: 20px;  /* 增加字体大小 */
-                width: 140px;  /* 增加按钮宽度 */
+                width: 45%;
+                margin: 5px;
+                padding: 12px 15px;
+                font-size: 18px;
             }
             
-            @media (max-width: 768px) {
-                .mode-buttons button, .unit-buttons button {
-                    width: 45%;
-                    margin: 5px;
-                    padding: 12px 15px;  /* 增加移动端按钮内边距 */
-                    font-size: 18px;  /* 增加移动端字体大小 */
-                }
-                
-                .mode-buttons h4, .unit-buttons h4 {
-                    margin: 8px 0;  /* 增加标题间距 */
-                    font-size: 18px;  /* 增加标题字体大小 */
-                }
+            .mode-buttons h4, .unit-buttons h4 {
+                margin: 8px 0;
+                font-size: 18px;
             }
+        }
+
+        /* 将 keyboard-trigger 移到外面，作为独立的样式 */
+        .keyboard-trigger {
+            display: none; /* 默认隐藏 */
+        }
+
+        @media (max-width: 768px) {
             .keyboard-trigger {
+                display: block; /* 移动端显示 */
                 position: fixed;
-                bottom: 70px;  /* 增加底部距离，避免被微信工具栏遮挡 */
+                bottom: 70px;
                 left: 50%;
                 transform: translateX(-50%);
                 z-index: 1000;
                 margin: 0;
-                padding: 12px 30px;  /* 增加按钮大小 */
-                font-size: 18px;    /* 增加字体大小 */
-                border-radius: 25px; /* 圆角按钮 */
-                box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* 添加阴影效果 */
+                padding: 12px 30px;
+                font-size: 18px;
+                border-radius: 25px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             }
         }
     </style>
