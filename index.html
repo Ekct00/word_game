@@ -70,14 +70,30 @@
             }
 
             .mode-buttons, .unit-buttons {
-                padding: 5px;
+                padding: 8px;  /* 减小内边距 */
+                text-align: center;
             }
-
-            .mode-buttons h4, .unit-buttons h4 {
-                margin: 3px 0;
-                font-size: 14px;
+            
+            .mode-buttons button, .unit-buttons button {
+                margin: 5px;  /* 增加按钮间距 */
+                padding: 12px 25px;  /* 增加按钮内边距 */
+                font-size: 20px;  /* 增加字体大小 */
+                width: 140px;  /* 增加按钮宽度 */
             }
-
+            
+            @media (max-width: 768px) {
+                .mode-buttons button, .unit-buttons button {
+                    width: 45%;
+                    margin: 5px;
+                    padding: 12px 15px;  /* 增加移动端按钮内边距 */
+                    font-size: 18px;  /* 增加移动端字体大小 */
+                }
+                
+                .mode-buttons h4, .unit-buttons h4 {
+                    margin: 8px 0;  /* 增加标题间距 */
+                    font-size: 18px;  /* 增加标题字体大小 */
+                }
+            }
             .keyboard-trigger {
                 position: fixed;
                 bottom: 10px;
