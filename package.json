@@ -1,0 +1,23 @@
+{
+  "name": "wordgame-master",
+  "version": "1.0.0",
+  "description": "a game# word_game",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ekct00/word_game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ekct00/word_game/issues"
+  },
+  "homepage": "https://github.com/Ekct00/word_game#readme",
+  "dependencies": {
+    "sharp": "^0.33.5"
+  }
+}
