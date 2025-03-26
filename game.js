@@ -173,12 +173,23 @@ const wordsByUnit = {
 
 let currentWords = []; // 当前单元的单词
 
-function preloadUnitImages(unitNumber) {
-    const words = wordsByUnit['unit' + unitNumber];
-    words.forEach(word => {
-        const img = new Image();
-        img.src = `./img/unit_${unitNumber}/${word}.jpg`;
-    });
+function preloadUnitImages(unitNumber, currentWord) {
+    // 优先加载当前单词的图片
+    if (currentWord) {
+        const currentImg = new Image();
+        currentImg.src = `./img/unit_${unitNumber}/${currentWord}.jpg`;
+    }
+    
+    // 然后异步加载其他图片
+    setTimeout(() => {
+        const words = wordsByUnit['unit' + unitNumber];
+        words.forEach(word => {
+            if (word !== currentWord) {  // 跳过已加载的当前单词
+                const img = new Image();
+                img.src = `./img/unit_${unitNumber}/${word}.jpg`;
+            }
+        });
+    }, 100);
 }
 
 function GameCntl($scope, $timeout) {
@@ -197,8 +208,8 @@ function GameCntl($scope, $timeout) {
     $scope.selectUnit = function(unitNumber) {
         $scope.currentUnit = unitNumber;
         currentWords = wordsByUnit['unit' + unitNumber];
-        preloadUnitImages(unitNumber); // 预加载该单元的所有图片
         $scope.next();
+        preloadUnitImages(unitNumber, $scope.word); // 传入当前单词
     }
     
     $scope.next = function() {
