@@ -173,6 +173,14 @@ const wordsByUnit = {
 
 let currentWords = []; // 当前单元的单词
 
+function preloadUnitImages(unitNumber) {
+    const words = wordsByUnit['unit' + unitNumber];
+    words.forEach(word => {
+        const img = new Image();
+        img.src = `./img/unit_${unitNumber}/${word}.jpg`;
+    });
+}
+
 function GameCntl($scope, $timeout) {
     $scope.clue = "_ar";
     $scope.word = "car";
@@ -189,6 +197,7 @@ function GameCntl($scope, $timeout) {
     $scope.selectUnit = function(unitNumber) {
         $scope.currentUnit = unitNumber;
         currentWords = wordsByUnit['unit' + unitNumber];
+        preloadUnitImages(unitNumber); // 预加载该单元的所有图片
         $scope.next();
     }
     
